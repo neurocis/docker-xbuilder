@@ -38,6 +38,7 @@ RUN apt-get install -y -q                              \
         subversion                                     \
         wget                                           \
         xz-utils                                       \
+        zlib1g-dev                                     \
  && apt-get clean
 # FIXME: install gcc-multilib
 # FIXME: add mips and powerpc architectures
@@ -104,5 +105,5 @@ RUN for triple in $(echo ${LINUX_TRIPLES} | tr "," " "); do                     
 ENTRYPOINT ["/usr/bin/crossbuild"]
 CMD ["/bin/bash"]
 WORKDIR /workdir
+COPY ./assets/crossbuild /usr/bin/xbuild
 COPY ./assets/crossbuild /usr/bin/crossbuild
-
