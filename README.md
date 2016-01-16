@@ -1,8 +1,7 @@
 # crossbuild
-multiarch cross compiling environments
 
 This is a multiarch Docker build environment image.
-You can use this image to produce multiarch binairies.
+You can use this image to produce binairies for multiple architectures.
 
 ## Supported targets & aliases
 
