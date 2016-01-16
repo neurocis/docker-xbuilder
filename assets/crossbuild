@@ -29,7 +29,7 @@ case "${CROSS_TRIPLE}" in
     i386|i386-linux-gnu)
 	echo "i386-linux-gnu not yet implemented." && exit 1 ;;
     *)
-	echo "Unrecognized alias, defaulting to i686-linux-gnu."
+	echo "Unrecognized alias, defaulting to x86_64-linux-gnu."
 	CROSS_TRIPLE="x86_64-linux-gnu" ;;
 esac
 
