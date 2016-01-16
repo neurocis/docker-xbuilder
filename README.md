@@ -130,7 +130,7 @@ RUN crossbuild ./compile-all.sh
 
 ## Credit
 
-This project is inspired by the [cross-compiler](https://github.com/steeve/cross-compiler) by the venerable [Steeve Morin](https://github.com/steeve) as well as [Manfred Touron](https://github.com/multiarch/crossbuild).
+This project is inspired by the [cross-compiler](https://github.com/steeve/cross-compiler) by the venerable [Steeve Morin](https://github.com/steeve) and [crossbuild](https://github.com/multiarch/crossbuild) by [Manfred Touron](https://github.com/moul).
 
 ## Legal note
 
