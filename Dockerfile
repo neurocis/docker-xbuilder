@@ -46,6 +46,22 @@ RUN apt-get install -y -q                              \
 # Set default triple to be x86_64-linux-gnu
 ENV CROSS_TRIPLE=x86_64-linux-gnu
 
+# Build and Install CMake
+WORKDIR /usr/src
+RUN git clone git://cmake.org/cmake.git CMake       \
+ && cd CMake                                        \
+ && git checkout v3.4.1
+RUN mkdir CMake-build                               \
+ && cd CMake-build
+ && /usr/src/CMake/bootstrap                        \
+    --parallel=$(nproc)                             \
+    --prefix=/usr                                   \
+ && make -j$(nproc)                                 \
+ && ./bin/cmake -DCMAKE_USE_SYSTEM_CURL:BOOL=ON     \
+                -DCMAKE_USE_OPENSSL:BOOL=ON .       \
+ && make install                                    \
+ && cd .. && rm -rf CMake-build
+WORKDIR /
 # Install Windows cross-tools
 RUN apt-get install -y mingw-w64 \
  && apt-get clean
