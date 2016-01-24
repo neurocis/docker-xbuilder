@@ -1,4 +1,5 @@
 FROM buildpack-deps:jessie-curl
+MAINTAINER Leigh Phillips <neurocis@neurocis.me>
 
 # Install deps
 RUN set -x; \
@@ -12,7 +13,7 @@ RUN set -x; \
  && dpkg --add-architecture mipsel                     \
  && dpkg --add-architecture powerpc                    \
  && dpkg --add-architecture ppc64el                    \
- && apt-get update
+ && apt-key update && apt-get update
 RUN apt-get install -y -q                              \
         bc                                             \
         binfmt-support                                 \
@@ -38,11 +39,12 @@ RUN apt-get install -y -q                              \
         subversion                                     \
         wget                                           \
         xz-utils                                       \
-        zlib1g-dev                                     \
+        libz-dev                                       \
  && apt-get clean
 # FIXME: install gcc-multilib
-# FIXME: add mips and powerpc architectures
 
+# Set default triple to be x86_64-linux-gnu
+ENV CROSS_TRIPLE=x86_64-linux-gnu
 
 # Install Windows cross-tools
 RUN apt-get install -y mingw-w64 \
@@ -67,7 +69,7 @@ RUN mkdir -p "/tmp/osxcross"                                                    
 
 
 # Create symlinks for triples
-ENV LINUX_TRIPLES=arm-linux-gnueabi,powerpc64le-linux-gnu,aarch64-linux-gnu,arm-linux-gnueabihf,mipsel-linux-gnu                  \
+ENV LINUX_TRIPLES=arm-linux-gnueabi,arm-linux-gnueabihf,aarch64-linux-gnu,powerpc64le-linux-gnu,mipsel-linux-gnu \
     DARWIN_TRIPLES=x86_64h-apple-darwin${DARWIN_VERSION},x86_64-apple-darwin${DARWIN_VERSION},i386-apple-darwin${DARWIN_VERSION}  \
     WINDOWS_TRIPLES=i686-w64-mingw32,x86_64-w64-mingw32
 COPY ./assets/osxcross-wrapper /usr/bin/osxcross-wrapper
