@@ -138,6 +138,9 @@ OSX/Darwin/Apple builds:
 **[Please ensure you have read and understood the Xcode license
    terms before continuing.](https://www.apple.com/legal/sla/docs/xcode.pdf)**
 
+Qt static builds: 
+**Ditribution of binaries built statically with the Qt toolchain may place your source under LGPL licencing if you do not have an appropriate commercial development licence from [Digia Plc.](https://www.qt.io/FAQ/) YOU HAVE BEEN WARNED! **
+
 
 ## License
 
