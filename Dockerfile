@@ -62,6 +62,17 @@ RUN mkdir CMake-build                               \
  && make install                                    \
  && cd .. && rm -rf CMake-build
 WORKDIR /
+
+# Build and Install Ninja
+WORKDIR /usr/src
+RUN git clone https://github.com/martine/ninja.git  \
+ && cd ninja                                        \
+ && git checkout v1.6.0                             \
+ && python ./configure.py --bootstrap               \
+ && ./ninja                                         \
+ && cp ./ninja /usr/bin/
+WORKDIR /
+
 # Install Windows cross-tools
 RUN apt-get install -y mingw-w64 \
  && apt-get clean
