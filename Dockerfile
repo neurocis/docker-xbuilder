@@ -38,6 +38,8 @@ RUN apt-get install -y -q                           \
         software-properties-common                  \
         subversion                                  \
         wget                                        \
+        curl                                        \
+        libcurl4-openssl-dev                        \
         xz-utils                                    \
         libz-dev                                    \
  && apt-get clean
@@ -52,7 +54,7 @@ RUN git clone git://cmake.org/cmake.git CMake       \
  && cd CMake                                        \
  && git checkout v3.4.1
 RUN mkdir CMake-build                               \
- && cd CMake-build
+ && cd CMake-build                                  \
  && /usr/src/CMake/bootstrap                        \
     --parallel=$(nproc)                             \
     --prefix=/usr                                   \
